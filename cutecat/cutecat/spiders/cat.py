@@ -8,7 +8,7 @@ class CatSpider(scrapy.Spider):
     start_urls = ['http://python123.io/ws/demo.html']
 
     def parse(self, response):
-        fname = response.url.split('/')[-1]
-        with open(fname, 'wb') as f:
+        file_name = response.url.split('/')[-1]
+        with open(file_name, 'wb') as f:
             f.write(response.body)
-        self.log('Save file %s.' % fname)
+        self.log('Save file %s.' % file_name)

@@ -60,6 +60,23 @@
             标签名称  标签属性
 ```
 
+#### 优化爬虫速度
+
+优化scrapy爬虫爬取的速度依赖与scrapy配置文件选项settings.py
+一共有4个参数，这些参数都与并非连接有关系.通过改变请求数量改变爬取速率
+
+CONCURRENT_REQUESTS
+
+* Configure maximum concurrent requests performed by Scrapy (default: 16),DOWNLOADER最大并发请求数量
+
+CONCURRENT_ITEMS
+
+* (default value is 100),Item Pipeline最大并发item处理数量
+
+CONCURRENT_REQUESTS_PER_DOMAIN
+
+CONCURRENT_REQUESTS_PER_IP
+
 ### yield keyword
 
 * 生成器是一个不断产生值的函数,

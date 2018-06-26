@@ -82,6 +82,7 @@ CONCURRENT_REQUESTS_PER_IP
 * 生成器是一个不断产生值的函数,
 * 包含yield语句的函数是一个生成器
 * 生成器每次产生一个值(yield语句)，函数被冻结，被唤醒后再产生一个值
+* yield from将在一个协程中调用另一个协程，并且得到另一个协程的返回结果
 
 #### generator
 

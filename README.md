@@ -1,24 +1,28 @@
-### Scrapy产生步骤:
+## Scrapy
 
-##### 1, create a scrapy project
+### Install
 
-> scrapy startproject <project_name>
+```shell
+pip install -r requirements.txt
+```
 
-##### 2, generate a scrapy spider in the project
+### Usage
 
-> scrapy genspider cat domain
+```shell
+scrapy startproject <project_name>
 
-##### 3, configuration generated spider 
+scrapy genspider cat domain
+
+scrapy runspider <spider_file_path>
+```
+
+### Configuration
 
 * scrapy.cfg: 部署scrapy爬虫的配置文件,把爬虫部署到特定的服务器上，并且在服务器配置好相关的操作接口
 * settings.py: scrapy爬虫的配置文件
 * allowed_domains: 只能爬取这个链接以下的域名链接
 * start_urls: scrapy爬取的初始页面url
 * parse: 对返回的页面处理响应，解析网页内容形成字典，从网页中发现新url爬取请求
-
-##### 4,run spider
-
-> scrapy runspider <spider_file_path>
 
 #### Scrapy爬虫的使用步骤
 
@@ -96,3 +100,16 @@ generator一般和循环语句一起使用,generator相比一次列出所有内�
 * 响应更加迅速
 * 使用更加灵活
 
+### Scrapy shell usage
+
+[reference](https://www.analyticsvidhya.com/blog/2017/07/web-scraping-in-python-using-scrapy/)
+
+```shell
+scrapy shell
+
+>>fetch("https://www.reddit.com/r/gameofthrones/")
+
+view(response)
+
+print(response.text)
+```

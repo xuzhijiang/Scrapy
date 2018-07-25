@@ -1,0 +1,9 @@
+from  Utils import get_html_text, build_soup
+
+url = 'http://python123.io/ws/demo.html'
+text = get_html_text(url)
+soup = build_soup(text)
+print(soup.a.string)
+print(soup.p.string)
+print(type(soup.a.string))
+print(type(soup.p.string))

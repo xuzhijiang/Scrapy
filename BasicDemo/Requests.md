@@ -35,3 +35,162 @@ r.text根据r.encoding显示网页内容,所以这个猜测不靠谱
 * 采用PATCH，仅向URL提交UserName的局部更新请求
 * 采用PUT，必须将所有20个字段一并提交到URL，未提交字段被删除
 * PATCH的最主要好处：节省网络带宽
+
+##### Requests库的POST方法
+
+> 向URL POST一个字典自动编码为form（表单）,
+
+```python
+payload = {'key1': 'value1', 'key2': 'value2'}
+>>> r = requests.post('http://httpbin.org/post', data = payload)
+>>> print(r.text)
+{ ...
+"form": {
+"key2": "value2",
+"key1": "value1"
+}
+```
+
+> 向URL POST一个字符串自动编码为data
+
+```python
+ r = requests.post('http://httpbin.org/post', data = 'ABC')
+>>> print(r.text)
+{ ...
+"data": "ABC"
+"form": {},
+}
+```
+
+##### Requests库的PUT方法
+
+> 和post方法类似，只不过把data数据覆盖了
+
+```python
+payload = {'key1': 'value1', 'key2': 'value2'}
+>>> r = requests.put('http://httpbin.org/put', data = payload)
+>>> print(r.text)
+{ ...
+"form": {
+"key2": "value2",
+"key1": "value1"
+},
+}
+```
+
+##### Requests库的request方法
+
+> requests.request(method, url, **kwargs),
+其中**kwargs: 控制访问的参数，均为可选项
+
+###### params
+
+
+> params : 字典或字节序列，作为参数增加到url中
+
+```python
+kv = {'key1': 'value1', 'key2': 'value2'}
+>>> r = requests.request('GET', 'http://python123.io/ws', params=kv)
+>>> print(r.url)
+http://python123.io/ws?key1=value1&key2=value2
+```
+
+###### data
+
+> 字典、字节序列或文件对象，作为Request的内容
+
+```python
+kv = {'key1': 'value1', 'key2': 'value2'}
+r = requests.request('POST', url, data=kv)
+body = '主体内容'
+r = requests.request('POST', url, data=body)
+```
+
+###### json
+
+>  JSON格式的数据，作为Request的内容
+
+```python
+kv = {'key1': 'value1'}
+r = requests.request('POST', url, json=kv)
+```
+
+###### headers
+
+> 字典， HTTP定制头,可以模拟任何浏览器
+
+```python
+hd = {'user-agent': 'Chrome/10'}
+r = requests.request('POST', url, headers=hd)
+```
+
+###### cookies
+
+> 字典或CookieJar， Request中的cookie
+
+###### auth
+
+> 元组，支持HTTP认证功能
+
+###### files
+
+> 字典类型，传输文件
+
+```python
+fs = {'file': open('data.xls', 'rb')}
+r = requests.request('POST', url, files=fs)
+```
+
+###### timeout
+
+> 设定超时时间，秒为单位
+
+```python
+r = requests.request('GET', url, timeout=30)
+```
+
+###### proxies
+
+> 字典类型，设定访问代理服务器，可以增加登录认证
+
+```python
+>>>pxs = { 'http': 'http://user:pass@10.10.10.1:1234'
+'https': 'https://10.10.10.1:4321' }
+>>> r = requests.request('GET', 'http://www.baidu.com', proxies=pxs)
+```
+
+###### allow_redirects
+
+> True/False，默认为True，重定向开关
+
+###### stream
+
+> True/False，默认为True，获取内容立即下载开关
+
+###### verify
+
+> True/False，默认为True，认证SSL证书开关
+
+###### cert
+
+> 本地SSL证书路径
+
+##### requests的get方法
+
+> requests.get(url, params=None, **kwargs)
+
+* params : url中的额外参数，字典或字节流格式，可选
+* **kwargs: 12个控制访问的参数
+
+##### requests的post方法
+
+> requests.post(url, data=None, json=None, **kwargs)
+
+* url : 拟更新页面的url链接
+* data : 字典、字节序列或文件， Request的内容
+* json : JSON格式的数据， Request的内容
+* **kwargs: 12个控制访问的参数
+
+#### Response
+
+* Response.content: 返回内容的二进制形式

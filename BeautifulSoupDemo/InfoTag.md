@@ -21,6 +21,8 @@
 
 #### JSON
 
+> 有类型key:value
+
 ```json
 “key” : “value”
 “key” : [“value1”, “value2”]

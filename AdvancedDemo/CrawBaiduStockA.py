@@ -58,6 +58,7 @@ def get_stock_info(lst, stock_info_url, fpath):
 def main():
     stock_list_url = "http://quote.eastmoney.com/stocklist.html"
     stock_info_url = "https://gupiao.baidu.com/stock/"
+    # backup: http://finance.sina.com.cn/stock/
     output_file = "D:/BaiduStockInfo.txt"
     stock_list = []
     get_stock_list(stock_list, stock_list_url)

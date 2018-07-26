@@ -9,6 +9,8 @@ pip install -r requirements.txt
 ### Usage
 
 ```shell
+scrapy -h
+
 scrapy startproject <project_name>
 
 scrapy genspider cat domain
@@ -113,3 +115,29 @@ view(response)
 
 print(response.text)
 ```
+
+#### Scrapy vs requests
+
+* 没有处理js、提交表单、应对验证码等功能（可扩展）
+
+> requests
+
+* 页面级爬虫
+* 功能库
+* 并发性考虑不足，性能较差
+* 重点在于页面下载
+* 定制灵活
+* 上手十分简单
+* 非常小的需求， requests库
+
+
+> scrapy
+
+* 网站级爬虫
+* 框架
+* 并发性好，性能较高
+* 重点在于爬虫结构
+* 一般定制灵活，深度定制困难
+* 入门稍难
+* 不太小的需求， Scrapy框架
+* Scrapy采用命令行创建和运行爬虫,命令行（不是图形界面）更容易自动化，适合脚本控制,本质上， Scrapy是给程序员用的，功能（而不是界面）更重要

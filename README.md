@@ -141,3 +141,53 @@ print(response.text)
 * 入门稍难
 * 不太小的需求， Scrapy框架
 * Scrapy采用命令行创建和运行爬虫,命令行（不是图形界面）更容易自动化，适合脚本控制,本质上， Scrapy是给程序员用的，功能（而不是界面）更重要
+
+#### Scrapy data type
+
+###### Request class
+
+class scrapy.http.Request()
+Request对象表示一个HTTP请求
+由Spider生成，由Downloader执行
+
+属性或方法 说明
+.url Request对应的请求URL地址
+.method 对应的请求方法， 'GET' 'POST'等
+.headers 字典类型风格的请求头
+.body 请求内容主体，字符串类型
+.meta 用户添加的扩展信息，在Scrapy内部模块间传递信息使用
+.copy() 复制该请求
+
+###### Response class
+
+class scrapy.http.Response()
+Response对象表示一个HTTP响应
+由Downloader生成，由Spider处理
+
+属性或方法 说明
+.url Response对应的URL地址
+.status HTTP状态码，默认是200
+.headers Response对应的头部信息
+.body Response对应的内容信息，字符串类型
+.flags 一组标记
+.request 产生Response类型对应的Request对象
+.copy() 复制该响应
+
+###### Item class
+
+class scrapy.item.Item()
+Item对象表示一个从HTML页面中提取的信息内容
+由Spider生成，由Item Pipeline处理
+Item类似字典类型，可以按照字典类型操作
+
+#### Scrapy爬虫提取信息的方法
+
+Scrapy爬虫支持多种HTML信息提取方法：
+• Beautiful Soup
+• lxml
+• re
+• XPath Selector
+• CSS Selector
+
+#### CSS Selector的基本使用
+

@@ -13,7 +13,9 @@ scrapy -h
 
 scrapy startproject <project_name>
 
-scrapy genspider cat domain
+cd <project_name>
+
+scrapy genspider <spider_name> <domain_name>
 
 scrapy runspider <spider_file_path>
 ```
@@ -28,60 +30,10 @@ scrapy runspider <spider_file_path>
 
 #### Scrapy爬虫的使用步骤
 
-* 创建一个工程和Spider模板
+* 建立工程和Spider模板
 * 编写Spider
-* 编写Item Pipeline
-* 优化配置策略
-
-#### Scrapy爬虫的数据类型
-
-> Request(class scrapy.http.Request())类
-    
-* Request对象表示一个HTTP请求
-* 由Spider生成，由Downloader执行
-
-> Response(class scrapy.http.response())类
-
-* response对象表示一个HTTP响应
-* 由Downloader生成，由Spider处理
-
-> Item(class scrapy.http.Item())类
-
-* Item object表示从html页面中提取的信息内容
-* 由spider生成，并且由Item Pipeline处理
-* Item类似于字典类型，可以按照字典类型操作
-
-#### Scrapy爬虫支持多种html信息提取方法
-
-* BeautifulSoup
-* lxml
-* re
-* CSS Selector(国际公认的html页面的提取方法)
-* XPath Selector
-
-#### CSS Selector基本使用
-
-```html
-<HTML>.css('a::attr(href)').extract()
-            标签名称  标签属性
-```
-
-#### 优化爬虫速度
-
-优化scrapy爬虫爬取的速度依赖与scrapy配置文件选项settings.py
-一共有4个参数，这些参数都与并非连接有关系.通过改变请求数量改变爬取速率
-
-CONCURRENT_REQUESTS
-
-* Configure maximum concurrent requests performed by Scrapy (default: 16),DOWNLOADER最大并发请求数量
-
-CONCURRENT_ITEMS
-
-* (default value is 100),Item Pipeline最大并发item处理数量
-
-CONCURRENT_REQUESTS_PER_DOMAIN
-
-CONCURRENT_REQUESTS_PER_IP
+* 编写Pipeline
+* 配置优化
 
 ### yield keyword
 
@@ -146,39 +98,41 @@ print(response.text)
 
 ###### Request class
 
-class scrapy.http.Request()
-Request对象表示一个HTTP请求
-由Spider生成，由Downloader执行
+* class scrapy.http.Request()
+* Request对象表示一个HTTP请求
+* 由Spider生成，由Downloader执行
 
-属性或方法 说明
-.url Request对应的请求URL地址
-.method 对应的请求方法， 'GET' 'POST'等
-.headers 字典类型风格的请求头
-.body 请求内容主体，字符串类型
-.meta 用户添加的扩展信息，在Scrapy内部模块间传递信息使用
-.copy() 复制该请求
+|属性或方法 |说明|
+|----------|----|
+|.url |Request对应的请求URL地址|
+|.method |对应的请求方法， 'GET' 'POST'等|
+|.headers |字典类型风格的请求头|
+|.body |请求内容主体，字符串类型|
+|.meta |用户添加的扩展信息，在Scrapy内部模块间传递信息使用|
+|.copy() |复制该请求|
 
 ###### Response class
 
-class scrapy.http.Response()
-Response对象表示一个HTTP响应
-由Downloader生成，由Spider处理
+* class scrapy.http.Response()
+* Response对象表示一个HTTP响应
+* 由Downloader生成，由Spider处理
 
-属性或方法 说明
-.url Response对应的URL地址
-.status HTTP状态码，默认是200
-.headers Response对应的头部信息
-.body Response对应的内容信息，字符串类型
-.flags 一组标记
-.request 产生Response类型对应的Request对象
-.copy() 复制该响应
+|属性或方法 |说明|
+|----------|----|
+|.url |Response对应的URL地址|
+|.status |HTTP状态码，默认是200|
+|.headers |Response对应的头部信息|
+|.body |Response对应的内容信息，字符串类型|
+|.flags |一组标记|
+|.request |产生Response类型对应的Request对象|
+|.copy() |复制该响应|
 
 ###### Item class
 
-class scrapy.item.Item()
-Item对象表示一个从HTML页面中提取的信息内容
-由Spider生成，由Item Pipeline处理
-Item类似字典类型，可以按照字典类型操作
+* class scrapy.item.Item()
+* Item对象表示一个从HTML页面中提取的信息内容
+* 由Spider生成，由Item Pipeline处理
+* Item类似字典类型，可以按照字典类型操作
 
 #### Scrapy爬虫提取信息的方法
 
@@ -187,7 +141,43 @@ Scrapy爬虫支持多种HTML信息提取方法：
 • lxml
 • re
 • XPath Selector
-• CSS Selector
+• CSS Selector(国际公认的html页面的提取方法)
 
 #### CSS Selector的基本使用
 
+![CSS Selector](img/css_selector.png)
+
+#### 如何进一步提高scrapy爬虫爬取速度?
+
+	优化scrapy爬虫爬取的速度依赖与scrapy配置文件选项settings.py
+一共有4个参数，这些参数都与并发连接有关系.通过改变请求数量改变爬取速率
+
+|选项 |说明|
+|-----|---|
+|CONCURRENT_REQUESTS |Downloader最大并发请求下载数量，默认32|
+|CONCURRENT_ITEMS |Item Pipeline最大并发ITEM处理数量，默认100|
+|CONCURRENT_REQUESTS_PER_DOMAIN |每个目标域名最大的并发请求数量，默认8|
+|CONCURRENT_REQUESTS_PER_IP |每个目标IP最大的并发请求数量，默认0，非0有效|
+
+#### Scrapy爬虫的地位
+
+* Python语言最好的爬虫框架
+* 具备企业级专业爬虫的扩展性（ 7x24高可靠性）
+* 千万级URL爬取管理与部署
+* 简单说： Scrapy足以支撑一般商业服务所需的爬虫能力
+
+#### Scrapy应用的展望
+
+> 持续爬取、商业服务、高可靠性
+
+###### 普通价值
+
+* 基于Linux， 7x24，稳定爬取输出
+* 商业级部署和应用 (scrapyd‐\*)
+* 千万规模内URL爬取、内容分析和存储
+
+###### 高阶价值
+
+* 基于docker，虚拟化部署
+* 中间件扩展，增加调度和监控
+* 各种反爬取对抗技术

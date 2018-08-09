@@ -15,7 +15,7 @@ scrapy startproject <project_name>
 
 cd <project_name>
 
-scrapy genspider <spider_name> <domain_name>
+scrapy genspider <spider_name> www.reddit.com/r/gameofthrones/
 
 scrapy runspider <spider_file_path>
 ```
@@ -79,6 +79,12 @@ response.css() is a function that helps extract content based on
 css selector passed to it.The ‘.’ is used with the className because it’s a css class selector,Also you need to use ::text to tell your scraper to extract only text content of the matching elements
 
 When more than two selectors are required to identify an element, we use them both. Also since both are CSS classes we have to use “.” with their names.
+
+* response - An object that the scrapy crawler returns,This object
+contains all the information about the downloaded content.
+* response.css(..) - Matches the element with the given css selector.
+* extract_first(...)-Extract the 'first' element that matches the given criteria
+* extract(..)-Extract 'all' element that matches the given criteria.
 
 #### Scrapy vs requests
 

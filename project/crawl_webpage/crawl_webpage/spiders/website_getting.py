@@ -2,8 +2,9 @@
 import scrapy
 
 
-class CatFullSpider(scrapy.Spider):
-    name = 'cat_full'
+class WebsiteGettingSpider(scrapy.Spider):
+    name = 'website_getting'
+    # start_urls = ['http://python123.io/ws/demo.html']
 
     def start_requests(self):
         urls = [

@@ -56,8 +56,6 @@ generator一般和循环语句一起使用,generator相比一次列出所有内�
 
 ### Scrapy shell usage
 
-[reference](https://www.analyticsvidhya.com/blog/2017/07/web-scraping-in-python-using-scrapy/)
-
 ```shell
 scrapy shell
 
@@ -66,7 +64,21 @@ scrapy shell
 view(response)
 
 print(response.text)
+
+response.css('.className::text').extract()
+
+response.css('.className::text').extract_first()
+
+response.css('className').extract_first()
+
+response.css(".classname1.classname2").extract_first()
+
 ```
+
+response.css() is a function that helps extract content based on 
+css selector passed to it.The ‘.’ is used with the className because it’s a css class selector,Also you need to use ::text to tell your scraper to extract only text content of the matching elements
+
+When more than two selectors are required to identify an element, we use them both. Also since both are CSS classes we have to use “.” with their names.
 
 #### Scrapy vs requests
 
@@ -181,3 +193,4 @@ Scrapy爬虫支持多种HTML信息提取方法：
 * 基于docker，虚拟化部署
 * 中间件扩展，增加调度和监控
 * 各种反爬取对抗技术
+

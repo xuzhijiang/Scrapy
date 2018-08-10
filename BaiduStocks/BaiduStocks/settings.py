@@ -14,6 +14,11 @@ BOT_NAME = 'BaiduStocks'
 SPIDER_MODULES = ['BaiduStocks.spiders']
 NEWSPIDER_MODULE = 'BaiduStocks.spiders'
 
+#Export as csv Feed
+FEED_FORMAT = 'csv'
+# url scheme(url 格式)
+FEED_URL = 'file:///tmp/reddit.csv'
+# storage backends: local file system
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'BaiduStocks (+http://www.yourdomain.com)'

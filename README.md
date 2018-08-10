@@ -200,3 +200,8 @@ Scrapy爬虫支持多种HTML信息提取方法：
 * 中间件扩展，增加调度和监控
 * 各种反爬取对抗技术
 
+#### Overview of XPath and XML
+
+XPath is a syntax that is used to defines XML documents.
+It can be used to traverse through am xml document, Note that
+XPaht's follows a hierarchy.

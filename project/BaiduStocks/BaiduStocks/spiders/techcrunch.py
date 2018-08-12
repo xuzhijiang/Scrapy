@@ -19,10 +19,13 @@ class TechcrunchSpider(scrapy.Spider):
 
 	def parse(self, response):
 		#Remove XML namespaces
+		#'dc:' and '![CDATA' are just XML namespace, so we delete it using method below.
 		response.selector.remove_namespaces()
 
 		#Extract article information
+		#Notice that text() here is equivalent to ::text from css selector.
 		titles = response.xpath('//item/title/text()').extract()
+
 		authors = response.xpath('//item/creator/text()').extract()
 		dates = response.xpath('//item/pubDate/text()').extract()
 		links = response.xpath('//item/link/text()').extract()

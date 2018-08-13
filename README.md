@@ -18,6 +18,8 @@ cd <project_name>
 scrapy genspider <spider_name> www.reddit.com/r/gameofthrones/
 
 scrapy runspider <spider_file_path>
+
+scrapy crawl zipru -o torrents.jl
 ```
 
 ### Configuration
@@ -205,3 +207,5 @@ Scrapy爬虫支持多种HTML信息提取方法：
 XPath is a syntax that is used to defines XML documents.
 It can be used to traverse through am xml document, Note that
 XPaht's follows a hierarchy.
+
+If you press ctrl-f in the DOM inspector then you’ll find that you can use this css expression as a search query (this works for xpath too!).

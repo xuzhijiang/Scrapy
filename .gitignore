@@ -1,6 +1,5 @@
 .idea/
 venv/
 __pycache__
-*.html*.csv
 *.html
 *.csv
